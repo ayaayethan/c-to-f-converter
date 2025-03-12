@@ -25,6 +25,13 @@ public class ExampleUnitTest {
     }
 
     @Test
+    public void ftocTest() {
+        assertEquals(c_freezing, Utils.ftoc(f_freezing), 0.001);
+        assertEquals(c_boiling, Utils.ftoc(f_boiling), 0.001);
+        assertEquals(nForty, Utils.ftoc(nForty), 0.001);
+    }
+
+    @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }

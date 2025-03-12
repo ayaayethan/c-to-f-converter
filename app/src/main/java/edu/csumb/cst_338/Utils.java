@@ -9,6 +9,6 @@ public class Utils {
     }
 
     public static double ftoc(double fahrenheit) {
-        return (fahrenheit * 1.8) + 32;
+        return (fahrenheit - 32) / 1.8;
     }
 }
