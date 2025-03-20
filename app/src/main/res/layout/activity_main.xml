@@ -9,10 +9,11 @@
 
     <TextView
         android:id="@+id/CtoFTitleTextView"
-        android:layout_height="74dp"
+        android:layout_height="60dp"
+        android:layout_width="207dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="C to F Converter"
+        android:text="@string/c_to_f_converter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Enter a Number!"
+        android:hint="@string/enter_a_number"
         android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CtoFEnteredValueEditText"
-        android:text="Convert"
+        android:text="@string/convert"
         android:textSize="36sp" />
 
     <TextView
