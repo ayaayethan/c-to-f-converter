@@ -16,11 +16,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         View view = binding.getRoot();
-
         setContentView(view);
 
-        binding.ctoFTextView.setText("WOW IT WORKED");
+        binding.CtoFConvertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                convertValueFromDisplay();
+            }
+        });
+    }
+
+    private void convertValueFromDisplay() {
+        String valueFromDisplay = binding.CtoFEnteredValueEditText.getText().toString();
+        double fahrenheit = 0.0;
+
+        if (!valueFromDisplay.isEmpty()) {
+            double celsius = Double.parseDouble(valueFromDisplay);
+
+            fahrenheit = Utils.ctof(celsius);
+        }
+
+        binding.CtoFConvertedValueTextView.setText(fahrenheit + "");
+
     }
 }
