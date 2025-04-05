@@ -12,10 +12,13 @@ import edu.csumb.cst_338.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    private static final String CONVERTED_VALUE_EXTRA_KEY = "MainActivity_Received_Value";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        double celsius = getIntent().getDoubleExtra(CONVERTED_VALUE_EXTRA_KEY, 0.0);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        binding.CtoFEnteredValueEditText.setText(celsius + "");
     }
 
     private double convertValue() {
@@ -54,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
         binding.CtoFConvertedValueTextView.setText(convertValue() + "");
     }
 
-    public static Intent mainActivityIntentFactory(Context packageContext) {
+    public static Intent mainActivityIntentFactory(Context packageContext, double celsius) {
         Intent intent = new Intent(packageContext, MainActivity.class);
+        intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, celsius);
         return intent;
     }
 }

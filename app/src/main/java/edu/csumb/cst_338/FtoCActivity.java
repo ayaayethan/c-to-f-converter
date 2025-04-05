@@ -28,21 +28,21 @@ public class FtoCActivity extends AppCompatActivity {
         binding.FtoCConvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                convertValueFromDisplay();
+                displayConvertedValue();
             }
         });
 
         binding.FtoCConvertButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext());
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), convertValue());
                 startActivity(intent);
                 return false;
             }
         });
     }
 
-    private void convertValueFromDisplay() {
+    private double convertValue() {
         String valueFromDisplay = binding.FtoCEnteredValueEditText.getText().toString();
         double celsius = 0.0;
 
@@ -52,8 +52,11 @@ public class FtoCActivity extends AppCompatActivity {
             celsius = Utils.ftoc(fahrenheit);
         }
 
-        binding.FtoCConvertedValueTextView.setText(celsius + "");
+        return celsius;
+    }
 
+    private void displayConvertedValue() {
+        binding.FtoCConvertedValueTextView.setText(convertValue() + "");
     }
     public static Intent ftoCIntentFactory(Context packageContext, double fahrenheitValue) {
         Intent intent = new Intent(packageContext, FtoCActivity.class);
