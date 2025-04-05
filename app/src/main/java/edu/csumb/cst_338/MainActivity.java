@@ -1,5 +1,6 @@
 package edu.csumb.cst_338;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 convertValueFromDisplay();
+            }
+        });
+
+        binding.CtoFConvertButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = FtoCActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
+                return false;
             }
         });
     }
