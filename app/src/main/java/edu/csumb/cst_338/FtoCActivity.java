@@ -31,6 +31,15 @@ public class FtoCActivity extends AppCompatActivity {
                 convertValueFromDisplay();
             }
         });
+
+        binding.FtoCConvertButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = MainActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     private void convertValueFromDisplay() {

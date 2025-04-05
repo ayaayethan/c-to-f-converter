@@ -1,5 +1,6 @@
 package edu.csumb.cst_338;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         binding.CtoFConvertedValueTextView.setText(fahrenheit + "");
+    }
 
+    public static Intent intentFactory(Context packageContext) {
+        Intent intent = new Intent(packageContext, MainActivity.class);
+        return intent;
     }
 }
