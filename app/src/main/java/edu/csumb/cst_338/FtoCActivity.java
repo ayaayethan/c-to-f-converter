@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import edu.csumb.cst_338.databinding.ActivityFtoCactivityBinding;
 
 public class FtoCActivity extends AppCompatActivity {
@@ -56,7 +58,8 @@ public class FtoCActivity extends AppCompatActivity {
     }
 
     private void displayConvertedValue() {
-        binding.FtoCConvertedValueTextView.setText(convertValue() + "");
+        String celsius = String.format(Locale.US, "%.2f", convertValue()) + "°C";
+        binding.FtoCConvertedValueTextView.setText(celsius);
     }
     public static Intent ftoCIntentFactory(Context packageContext, double fahrenheitValue) {
         Intent intent = new Intent(packageContext, FtoCActivity.class);

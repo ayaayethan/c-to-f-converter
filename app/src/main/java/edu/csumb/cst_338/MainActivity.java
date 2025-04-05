@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import edu.csumb.cst_338.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayConvertedValue() {
-        binding.CtoFConvertedValueTextView.setText(convertValue() + "");
+        String fahrenheit = String.format(Locale.US, "%.2f", convertValue()) + "°F";
+        binding.CtoFConvertedValueTextView.setText(fahrenheit);
     }
 
     public static Intent mainActivityIntentFactory(Context packageContext, double celsius) {
