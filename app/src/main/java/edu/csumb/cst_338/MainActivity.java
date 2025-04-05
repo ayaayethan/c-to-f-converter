@@ -24,34 +24,37 @@ public class MainActivity extends AppCompatActivity {
         binding.CtoFConvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                convertValueFromDisplay();
+                displayConvertedValue();
             }
         });
 
         binding.CtoFConvertButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent = FtoCActivity.intentFactory(getApplicationContext());
+                Intent intent = FtoCActivity.ftoCIntentFactory(getApplicationContext(), convertValue());
                 startActivity(intent);
                 return false;
             }
         });
     }
 
-    private void convertValueFromDisplay() {
+    private double convertValue() {
         String valueFromDisplay = binding.CtoFEnteredValueEditText.getText().toString();
         double fahrenheit = 0.0;
 
         if (!valueFromDisplay.isEmpty()) {
             double celsius = Double.parseDouble(valueFromDisplay);
-
             fahrenheit = Utils.ctof(celsius);
         }
 
-        binding.CtoFConvertedValueTextView.setText(fahrenheit + "");
+        return fahrenheit;
     }
 
-    public static Intent intentFactory(Context packageContext) {
+    private void displayConvertedValue() {
+        binding.CtoFConvertedValueTextView.setText(convertValue() + "");
+    }
+
+    public static Intent mainActivityIntentFactory(Context packageContext) {
         Intent intent = new Intent(packageContext, MainActivity.class);
         return intent;
     }

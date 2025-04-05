@@ -5,17 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import edu.csumb.cst_338.databinding.ActivityFtoCactivityBinding;
-import edu.csumb.cst_338.databinding.ActivityMainBinding;
 
 public class FtoCActivity extends AppCompatActivity {
     ActivityFtoCactivityBinding binding;
+    private static final String CONVERTED_VALUE_EXTRA_KEY = "FtoCActivity_Received_Value";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +20,10 @@ public class FtoCActivity extends AppCompatActivity {
         binding = ActivityFtoCactivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        double fahrenheit = getIntent().getDoubleExtra(CONVERTED_VALUE_EXTRA_KEY, 0.0);
+
+        binding.FtoCEnteredValueEditText.setText(fahrenheit + "");
 
         binding.FtoCConvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +35,7 @@ public class FtoCActivity extends AppCompatActivity {
         binding.FtoCConvertButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent = MainActivity.intentFactory(getApplicationContext());
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext());
                 startActivity(intent);
                 return false;
             }
@@ -55,8 +55,9 @@ public class FtoCActivity extends AppCompatActivity {
         binding.FtoCConvertedValueTextView.setText(celsius + "");
 
     }
-    public static Intent intentFactory(Context packageContext) {
+    public static Intent ftoCIntentFactory(Context packageContext, double fahrenheitValue) {
         Intent intent = new Intent(packageContext, FtoCActivity.class);
+        intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, fahrenheitValue);
         return intent;
     }
 }
